@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './InterviewSelection.css'; // Make sure this path is correct
+import axios from 'axios';
 
 function InterviewSelection(props) {
     const [interviewLength, setInterviewLength] = useState('');
@@ -8,10 +9,23 @@ function InterviewSelection(props) {
         setInterviewLength(length);
     };
 
-    const handleContinue = () => {
+    const handleContinue = async() => {
         let thisLength = 5
         if (interviewLength === "demo"){
             thisLength = 2
+        }
+        const jsonPayload = {
+            "length": thisLength, // Sending the 'length' value as JSON
+        };
+        try {
+            const response = await axios.post('http://localhost:5000/resumeParser', jsonPayload, {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+            console.log('JSON sent successfully:', response.data);
+        } catch (error) {
+            console.error('Error sending JSON:', error);
         }
         props.afterSelection(thisLength)
     };
