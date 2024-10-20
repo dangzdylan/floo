@@ -107,6 +107,8 @@ def resumeParser():
 
     pdf_to_text(filepath)
 
+    return "File saved successfully"
+
 @app.route('/upload_audio', methods=['POST'])
 def upload_audio():
     file = request.files['audio']

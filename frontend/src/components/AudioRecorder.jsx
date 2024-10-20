@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
+import "./AudioRecorder.css";
+
 function AudioRecorder() {
   const [recording, setRecording] = useState(false);
   const [audioFile, setAudioFile] = useState(null);
