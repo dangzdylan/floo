@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 import "./Onboarding.css";
+import axios from "axios";
 
 const Onboarding = () => {
  
   const [selectedFile, setSelectedFile] = useState(null);
-  //const [startButtonVisible, setStartButtonVisible] = useState(false);
 
   const handleFileUpload = (event) => {
     setSelectedFile(event.target.files[0]);
     console.log(selectedFile)
-    //setStartButtonVisible(true);
   };
 
-  const uploadHandler = () => {
-    alert(selectedFile.name)
+  const uploadHandler = async () => {
+    if (!selectedFile) return;
+
+    const formData = new FormData();
+    formData.append('file', selectedFile); // append the PDF to FormData
+    try {
+      const response = await axios.post('http://localhost:5000/resumeParser', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('File uploaded successfully:', response.data);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
   }
 
   return (
