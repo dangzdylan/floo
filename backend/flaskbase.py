@@ -20,19 +20,17 @@ CORS(app)
 
 interview = []
 
-job_type = []
 length = []
 first_question = False
 
-@app.route("/interview/setup")
+@app.route("/interview/setup", methods=["POST"])
 def interview_setup():
-    job_type.append(request.json.get("type"))
     length.append(request.json.get("length"))
     interview.append(
         {
             "role": "system", "content": """
             You are acting as an interviewer that asks behavioral questions. 
-            The user is applying for a {job_type[0]} role.
+            The user is applying for a software engineering role.
             Your job is to ask general behavioral questions that a typical interview would target.
             After each question, you will ask a follow up question about any details important to the job field. This encourages the user to elaborate on his answers and be more through.
             Make sure to be enthuisatic and show that you are an attentive listener!
