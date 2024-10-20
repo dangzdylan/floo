@@ -74,15 +74,18 @@ header {
     background-color: #080808; /* Customize button color */
     color: #F2F2F2; /* Text color */
     padding: 10px 20px; /* Add some padding */
+    border-color: #F2F2F2;
+    border-width: 0.5px;
+    border-style: solid;
     border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
     text-align: center; /* Center the text */
-    transition: background-color 0.3s; /* Transition for hover effect */
+    transition: transform 0.3s ease;
     box-shadow: -10px 10px 20px rgba(228, 223, 223, 0.3); /* Add a drop shadow */
   }
   
   .customFileUpload:hover {
-    background-color: #4d93df; /* Darker shade on hover */
+    transform: scale(1.05);
   }
 
   .resumeImage {
@@ -104,7 +107,7 @@ header {
     padding: 10px 20px;
     background-color: #844040; /* Darker purple for buttons */
     color: #F2F2F2;
-    border: none;
+    border: #F2F2F2;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
@@ -128,14 +131,21 @@ header {
     background-color: #080808; /* Lighter purple for 'Get Started' */
     color: #F2F2F2;
     border: none;
+    border-width: 0.5px;
+    border-color: #F2F2F2;
+    border-style: solid;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 20px;
-    background-color: #4d93df; /* Lighter purple on hover with transparency */
+    background-color: #080808; /* Lighter purple on hover with transparency */
+    transition: transform 0.3s ease;
   }
  
+  .gettingStartedButton:hover {
+    transform: scale(1.05);
+  }
  
   /* Responsive design for mobile devices */
   @media (max-width: 768px) {

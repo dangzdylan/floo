@@ -18,28 +18,35 @@ function InterviewSelection(props) {
 
     return (
         <div className="interview-selection">
-            <div className="questionText">What type of Interview?</div>
-            <div className="button-container">
+            <header>
+                <div className="headerContainer">
+                <p className="companyName">FLOO</p>
+                </div>
+            </header>
+            <div className="selections">
+                <div className="questionText">Select A Session</div>
+                <div className="button-container">
+                    <button 
+                        className={`length-button ${interviewLength === 'demo' ? 'selected' : ''}`}
+                        onClick={() => handleSelect('demo')}
+                    >
+                        Demo (2-3 min)
+                    </button>
+                    <button 
+                        className={`length-button ${interviewLength === 'full' ? 'selected' : ''}`}
+                        onClick={() => handleSelect('full')}
+                    >
+                        Normal (10-15 min)
+                    </button>
+                </div>
                 <button 
-                    className={`length-button ${interviewLength === 'demo' ? 'selected' : ''}`}
-                    onClick={() => handleSelect('demo')}
+                    className="continue-button" 
+                    onClick={handleContinue} 
+                    disabled={!interviewLength} // Disable if no option is selected
                 >
-                    Demo (2-3 min)
-                </button>
-                <button 
-                    className={`length-button ${interviewLength === 'normal' ? 'selected' : ''}`}
-                    onClick={() => handleSelect('normal')}
-                >
-                    Normal (10-15 min)
+                    Continue
                 </button>
             </div>
-            <button 
-                className="continue-button" 
-                onClick={handleContinue} 
-                disabled={!interviewLength} // Disable if no option is selected
-            >
-                Continue
-            </button>
         </div>
     );
 }
