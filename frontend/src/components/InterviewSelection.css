@@ -1,21 +1,56 @@
 /* Title Styles */
+html, body {
+    height: 100%;         /* Ensure the body takes the full height */
+    margin: 0;           /* Remove default margin */
+    overflow: hidden;     /* Prevent scrolling */
+  
+}
+
 .questionText {
-    color: #d8a2ff; /* Light purple text for contrast */
-    font-size: 24px; /* Increased font size for emphasis */
+    color: #F2F2F2; /* Light purple text for contrast */
+    font-size: 75px; /* Increased font size for emphasis */
     font-weight: bold; /* Bold text for emphasis */
     margin-bottom: 20px; /* Space below the question */
+    text-shadow: -0.5px 5px 5px #87ddff;
 }
+
+header {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background-color: #080808; /* Optional: to visualize the header area */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+.selections {
+    margin-top: 200px;
+}
+
+  .headerContainer {
+    padding: 40px; /* Optional: adjust padding for spacing */
+  }
+  
+  .companyName {
+    margin: 0;
+    color: #F2F2F2;
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold, optional */
+  }
 
 /* Interview Selection Container */
 .interview-selection {
-    text-align: center; /* Center align text */
-    padding: 40px; /* Padding around the container */
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Arrange items in a row */
+    align-items: center; /* Center items vertically */
+    height: 100vh; /* Make it occupy 95% of the viewport height */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
-    background: #2e1a47; /* Dark purple background for the container */
-    max-width: 500px; /* Max width to keep it compact */
+    background: #080808; /* Dark background for the container */
     width: 100%; /* Full width */
     color: #ffffff; /* White text for better visibility */
+    text-align: center; /* Center align text within the container */
 }
 
 /* Button Container */
@@ -28,11 +63,15 @@
 
 /* Button Styles */
 .length-button {
-    padding: 12px 24px; /* Increased padding */
+    padding: 50px 75px; /* Increased padding */
     border: none;
     border-radius: 5px;
-    background-color: #5b3e78; /* Darker purple for buttons */
+    border-width: 0.5px;
+    border-color: #F2F2F2;
+    border-style: solid;
+    background-color: #080808; /* Darker purple for buttons */
     cursor: pointer;
+    color: #F2F2F2;
     font-size: 16px; /* Consistent font size */
     transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Shadow for buttons */
@@ -40,40 +79,45 @@
 
 /* Selected Button Style */
 .length-button.selected {
-    background-color: #7a5a9a; /* Lighter purple when selected */
-    color: white; /* White text */
+    border-color: #87ddff;
+    color: #87ddff; /* White text */
     transform: translateY(-2px); /* Lift effect */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Stronger shadow for selected button */
 }
 
 /* Hover Effect for Buttons */
 .length-button:hover {
-    background-color: #67528e; /* Lighter purple on hover */
+    background-color: #87ddff; /* Lighter purple on hover */
     transform: translateY(-2px); /* Lift effect on hover */
 }
 
 /* Continue Button Styles */
 .continue-button {
-    padding: 12px 24px; /* Increased padding */
+    padding: 12px 250px; /* Increased padding */
     border: none;
+    border-width: 0.5px;
+    border-color: #F2F2F2;
+
+    border-style:solid;
     border-radius: 5px;
-    background-color: #4b8c3e; /* Green color for continue button */
-    color: white;
+    background-color: #080808; /* Green color for continue button */
+    color: #F2F2F2;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+    transition: color 0.3s, transform 0.3s; /* Smooth transitions */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Shadow for continue button */
 }
 
 /* Hover Effect for Continue Button */
 .continue-button:hover {
-    background-color: #3f7e36; /* Darker green on hover */
     transform: translateY(-2px); /* Lift effect on hover */
 }
 
 /* Disabled State for Continue Button */
 .continue-button:disabled {
-    background-color: #ccc; /* Gray color when disabled */
+    color: #080808;
+    background-color: #080808; /* Gray color when disabled */
+    border-color: #080808;
     cursor: not-allowed; /* Change cursor style when disabled */
     box-shadow: none; /* Remove shadow when disabled */
 }
