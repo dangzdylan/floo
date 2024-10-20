@@ -1,12 +1,6 @@
-Interviewer: 
-User:
-Interviewer:
-User:
-Interviewer: 
-User:
-Interviewer:
-User:
-Interviewer: 
-User:
-Interviewer:
-User:
+Interviewer: Tell me about yourself.
+User: I am Arnav and I love playing badminton and doing math.
+Interviewer: Describe a situation where you had to work with a challenging team member. How did you handle it?
+User: I handled it well.
+Interviewer: Tell me about a time when you received critical feedback. How did you respond and improve?
+User: Honestly I responded pretty badly to the feedback.

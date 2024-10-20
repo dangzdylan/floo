@@ -158,7 +158,7 @@ behavioralQuestions = [
 ]
 
 @app.route('/perform_interview', method=['GET'])
-def perform_interview(n):
+def perform_interview():
     assessment_start('backend/transcript.txt', 'backend/resume.txt')
     return send_file('backend/data.json')
 
