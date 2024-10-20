@@ -1,19 +1,64 @@
 /* Container for the onboarding screen */
+html, body {
+  height: 100%;         /* Ensure the body takes the full height */
+  margin: 0;           /* Remove default margin */
+  overflow: hidden;     /* Prevent scrolling */
+
+}
+
+.thebody {
+  display: flex;        /* Use flexbox for layout */
+  flex-direction: column; /* Stack children vertically */
+  height: 100%;        /* Make it fill the entire viewport height */
+}
+
+header {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: #080808; /* Optional: to visualize the header area */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.headerContainer {
+  padding: 40px; /* Optional: adjust padding for spacing */
+}
+
+.companyName {
+  margin: 0;
+  color: #F2F2F2;
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the text bold, optional */
+}
+
+
 .onboardingContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #1a0f2e; /* Dark purple background */
-    font-family: 'Arial', sans-serif;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50vh;
+  background-color: #080808; /* Dark background */
+  font-family: 'Arial', sans-serif;
+  border-radius: 15px; /* Optional: rounds the edges */
+  padding: 20px; /* Adds space inside the container */
+  margin: 10px; /* Optional: Adds space outside the container */
+  margin-top: 150px;
+}
  
   /* Welcome text styling */
   .welcomeText {
-    font-size: 2rem;
-    color: #d8a2ff; /* Light purple for contrast */
+    font-size: 5rem;
+    color: #F2F2F2; /* Light purple for contrast */
     margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .welcomeText2 {
+    font-size: 1rem;
+    color: #F2F2F2; /* Light purple for contrast */
+    margin-bottom: 160px;
     font-weight: bold;
   }
  
@@ -25,11 +70,40 @@
     gap: 20px;
   }
  
+  .customFileUpload {
+    background-color: #080808; /* Customize button color */
+    color: #F2F2F2; /* Text color */
+    padding: 10px 20px; /* Add some padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    text-align: center; /* Center the text */
+    transition: background-color 0.3s; /* Transition for hover effect */
+    box-shadow: -10px 10px 20px rgba(228, 223, 223, 0.3); /* Add a drop shadow */
+  }
+  
+  .customFileUpload:hover {
+    background-color: #4d93df; /* Darker shade on hover */
+  }
+
+  .resumeImage {
+    width: 100px; /* Adjust size as necessary */
+    height: auto; /* Keeps aspect ratio intact */
+    box-shadow: 0px 10px 50px rgba(255, 255, 255, 0.5); /* Tighter white drop shadow */
+    border-radius: 8px; /* Optional rounded corners */
+    margin-top: -50px;
+    transition: transform 0.2s ease-in-out; /* Smooth animation on hover */
+  }
+  
+  .resumeImage:hover {
+    transform: scale(1.05); /* Slightly enlarges image on hover */
+  }
+
   /* Styling for the file upload input */
   .resumeButton {
+    display: none;
     padding: 10px 20px;
-    background-color: #5b3e78; /* Darker purple for buttons */
-    color: #fff;
+    background-color: #844040; /* Darker purple for buttons */
+    color: #F2F2F2;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -44,26 +118,24 @@
   /* Styling for the selected file display */
   p {
     font-size: 1rem;
-    color: #b3a1c0; /* Light grayish purple */
+    color: #F2F2F2; /* Light grayish purple */
     margin-top: 10px;
   }
  
   /* Styling for the 'Get Started' button */
   .gettingStartedButton {
     padding: 12px 30px;
-    background-color: #4b8c3e; /* Lighter purple for 'Get Started' */
-    color: #fff;
+    background-color: #080808; /* Lighter purple for 'Get Started' */
+    color: #F2F2F2;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.2rem;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    background-color: #4d93df; /* Lighter purple on hover with transparency */
   }
  
-  .gettingStartedButton:hover {
-    background-color: #4b8c3e; /* Lighter purple on hover */
-  }
  
   /* Responsive design for mobile devices */
   @media (max-width: 768px) {
