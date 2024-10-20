@@ -5,6 +5,8 @@ import PyPDF2
 from openai import OpenAI
 from resume1 import pdf_to_text
 from dotenv import load_dotenv
+from flask_cors import CORS
+from deepgram_test import run_deepgram
 
 # Load the OpenAI API key from environment variables
 load_dotenv()
@@ -14,6 +16,7 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=openai_api_key)
 
 app = Flask(__name__)
+CORS(app)
 
 interview = []
 
@@ -105,6 +108,14 @@ def resumeParser():
     file.save(filepath)
 
     pdf_to_text(filepath)
+
+@app.route('/upload_audio', methods=['POST'])
+def upload_audio():
+    file = request.files['audio']
+    file.save('uploaded_audio.wav')
+    run_deepgram('uploaded_audio.wav')
+
+    return "File uploaded successfully", 200
 
 
 if __name__ == "__main__":
