@@ -1,14 +1,3 @@
-/* Base styles */
-body {
-    background-color: #1a0f2e; /* Dark background */
-    font-family: 'Arial', sans-serif; /* Clean font for readability */
-    margin: 0; /* Remove default margin */
-    height: 100vh; /* Full height for body */
-    display: flex; /* Flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
-
 /* Title Styles */
 .questionText {
     color: #d8a2ff; /* Light purple text for contrast */
