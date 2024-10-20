@@ -52,7 +52,6 @@ header {
     color: #F2F2F2; /* Light purple for contrast */
     margin-bottom: 20px;
     font-weight: bold;
-    text-shadow: -2px 6px 10px rgb(111, 226, 238);
   }
 
   .welcomeText2 {
@@ -80,11 +79,13 @@ header {
     border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
     text-align: center; /* Center the text */
-    transition: transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     box-shadow: -10px 10px 20px rgba(228, 223, 223, 0.3); /* Add a drop shadow */
   }
   
   .customFileUpload:hover {
+    border-color: #3c7fd7;
+    background-color: #3c7fd7;
     transform: scale(1.05);
   }
 
