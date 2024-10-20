@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './InterviewScreen.css';
 import AudioRecorder from './AudioRecorder';
 import axios from 'axios';
+import TextSpeechFunction from './TextSpeechFunction';
 
 const behavioralQuestions = [
     "Tell me about a time when you faced a difficult technical problem. How did you approach it?",
@@ -29,6 +30,7 @@ const InterviewScreen = (props) => {
     const [questionsUsed, setQuestionsUsed] = useState(["Tell me about yourself."])
     const [isActive, setIsActive] = useState(false);
 
+
     useEffect(() => {
         // Check if time is greater than 0 before starting the interval
         if (!isActive) {
@@ -45,18 +47,21 @@ const InterviewScreen = (props) => {
             setQuestionsLeft(questionsLeft-1)
             if (questionsLeft===0){
                 props.afterInterview()
-            }
-            let outsideRandomQuestion = "?"
-            while (true) {
-                let randomQuestion = behavioralQuestions[Math.floor(Math.random() * behavioralQuestions.length)]
-                if (!questionsUsed.includes(randomQuestion)){
-                    setQuestion(randomQuestion)
-                    outsideRandomQuestion = randomQuestion
-                    break
+            } else {
+                let outsideRandomQuestion = "?"
+                while (true) {
+                    let randomQuestion = behavioralQuestions[Math.floor(Math.random() * behavioralQuestions.length)]
+                    if (!questionsUsed.includes(randomQuestion)){
+                        //play audio
+                        TextSpeechFunction(randomQuestion)
+                        setQuestion(randomQuestion)
+                        outsideRandomQuestion = randomQuestion
+                        break
+                    }
                 }
+                setQuestionsUsed([...questionsUsed, outsideRandomQuestion])
+                setTime(60)
             }
-            setQuestionsUsed([...questionsUsed, outsideRandomQuestion])
-            setTime(60)
         }
     }, [time]); // Dependency array, will run effect when 'time' changes
 
@@ -70,18 +75,22 @@ const InterviewScreen = (props) => {
             setQuestionsLeft(questionsLeft-1)
             if (questionsLeft===0){
                 props.afterInterview()
-            }
-            let outsideRandomQuestion = "?"
-            while (true) {
-                let randomQuestion = behavioralQuestions[Math.floor(Math.random() * behavioralQuestions.length)]
-                if (!questionsUsed.includes(randomQuestion)){
-                    setQuestion(randomQuestion)
-                    outsideRandomQuestion = randomQuestion
-                    break
+            }else {
+                let outsideRandomQuestion = "?"
+                while (true) {
+                    let randomQuestion = behavioralQuestions[Math.floor(Math.random() * behavioralQuestions.length)]
+                    if (!questionsUsed.includes(randomQuestion)){
+                        //play audio
+                        TextSpeechFunction(randomQuestion)
+                        setQuestion(randomQuestion)
+                        outsideRandomQuestion = randomQuestion
+                        break
+                    }
                 }
+                setQuestionsUsed([...questionsUsed, outsideRandomQuestion])
+                setTime(60)
             }
-            setQuestionsUsed([...questionsUsed, outsideRandomQuestion])
-            setTime(60)
+            
         }
     }
 
