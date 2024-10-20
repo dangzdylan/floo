@@ -52,6 +52,7 @@ header {
     color: #F2F2F2; /* Light purple for contrast */
     margin-bottom: 20px;
     font-weight: bold;
+    text-shadow: -2px 6px 10px rgb(111, 226, 238);
   }
 
   .welcomeText2 {
