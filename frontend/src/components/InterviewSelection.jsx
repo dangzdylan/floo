@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './InterviewSelection.css'; // Make sure this path is correct
 
-function InterviewSelection() {
+function InterviewSelection(props) {
     const [interviewLength, setInterviewLength] = useState('');
 
     const handleSelect = (length) => {
@@ -9,7 +9,11 @@ function InterviewSelection() {
     };
 
     const handleContinue = () => {
-        alert(`You selected: ${interviewLength}`);
+        let thisLength = 5
+        if (interviewLength === "demo"){
+            thisLength = 2
+        }
+        props.afterSelection(thisLength)
     };
 
     return (
