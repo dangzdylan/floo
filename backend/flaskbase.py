@@ -22,7 +22,7 @@ interview = []
 
 job_type = []
 length = []
-first_question = False
+first_question = [False]
 
 @app.route("/interview/setup")
 def interview_setup():
@@ -46,11 +46,11 @@ def interview_question():
 
     length[0] -= 1
 
-    if (first_question):
+    if (first_question[0]):
         answer = request.json.get("message") # Extract the user's answer
         interview.append({"role": "user", "content": answer})
 
-    first_question = True
+    first_question[0] = True
 
     interview.append({"role": "system", "content": "Give a kind short response if the user has answered a question. Then ask another one."})
 

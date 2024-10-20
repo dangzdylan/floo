@@ -93,7 +93,7 @@ def assesment_start(transcript_path, resume_path):
 
     return messages[0].content[0].text.value
 
-pdf_to_text('justinhoangresume1.pdf')
+pdf_to_text('backend/Arnav_Khinvasara_resume.pdf')
 print(assesment_start('transcript.txt', 'resume.txt'))
 
 '''
