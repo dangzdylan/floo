@@ -10,7 +10,7 @@ import re
 
 def parse_resume(resume):
     # Takes in path to file, writes output file
-    client = OpenAI(api_key="xxxx")
+    client = OpenAI()
     file = client.files.create(
         file=open(resume, "rb"),
         purpose="assistants"
