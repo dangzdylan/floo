@@ -1,9 +1,10 @@
 from openai import OpenAI
 from flask import Flask
 from flaskbase import *
+
 import re
-
-
+load_dotenv(dotenv_path='/backend')
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 def transcript_saver(transcript):
     f = open("transcript.txt", "a")
@@ -15,9 +16,8 @@ def transcript_saver(transcript):
 def assesment_start(transcript_path, resume_path):
     # Takes in path to transcript txt file and resume txt file
     # Returns feedback text
-
     client = OpenAI(api_key=openai_api_key)
-
+    
     # Create files for assistant
     transcript = client.files.create(
         file=open(transcript_path, "rb"),
@@ -93,36 +93,46 @@ def assesment_start(transcript_path, resume_path):
 
     return messages[0].content[0].text.value
 
-pdf_to_text('justinhoangresume1.pdf')
-print(assesment_start('transcript.txt', 'resume.txt'))
-
-'''
-def parse_resume(resume):
-    # Takes in path to file, writes output file
-    client = OpenAI()
-    file = client.files.create(
-        file=open(resume, "rb"),
+def obtain_rating(transcript_path, resume_path):
+    # Takes in path to transcript txt file and resume txt file
+    # Returns feedback text
+    client = OpenAI(api_key=openai_api_key)
+    
+    # Create files for assistant
+    transcript = client.files.create(
+        file=open(transcript_path, "rb"),
         purpose="assistants"
     )
-    
-    completion = client.beta.assistants.create(
+    resume = client.files.create(
+        file=open(resume_path, "rb"),
+        purpose="assistants"
+    )
+    assistant = client.beta.assistants.create(
         model="gpt-4o-mini",
-        instructions="Return a txt file",
-        tools=[{"type": "code_interpreter"}]
+        instructions="Output a single number from one to ten according to the given interview transcript.",
+        tools=[{"type": "code_interpreter"}, {"type": "file_search"}]
     )
 
     # Upload files and add to vector store
-    vector_store = client.beta.vector_stores.create(name="Resumes")
-    
-    file_paths = [resume]
+    transcript_vector = client.beta.vector_stores.create(name="Transcript")
+    resume_vector = client.beta.vector_stores.create(name="Resume")
+
+    file_paths = [transcript_path]
     file_streams = [open(path, "rb") for path in file_paths]
 
-    completion = client.beta.assistants.update(
-        assistant_id=completion.id,
-        tool_resources={"file_search": {"vector_store_ids": [vector_store.id]}},
+    assistant = client.beta.assistants.update(
+        assistant_id=assistant.id,
+        tool_resources={"file_search": {"vector_store_ids": [transcript_vector.id]}},
     )
-    file_batch = client.beta.vector_stores.file_batches.upload_and_poll(
-        vector_store_id=vector_store.id, files=file_streams
+    client.beta.vector_stores.file_batches.upload_and_poll(
+        vector_store_id=transcript_vector.id, files=file_streams
+    )
+
+    file_paths = [resume_path]
+    file_streams = [open(path, "rb") for path in file_paths]
+
+    client.beta.vector_stores.file_batches.upload_and_poll(
+        vector_store_id=resume_vector.id, files=file_streams
     )
 
     # Create thread
@@ -130,36 +140,38 @@ def parse_resume(resume):
         messages=[
             {
             "role": "user",
-            "content": "Create a text file named answers.txt with one paragraph for each section in the resume.",
+            "content": """
+                You are given an interview transcript.
+                Only output a single number from 1-10 based on their rating.
+                Do not output anything else.
+            """,
             "attachments": [
                 {
-                "file_id": file.id,
+                "file_id": transcript.id,
                 "tools": [{"type": "code_interpreter"}, {"type": "file_search"}]
                 }
             ]
             }
         ]
     )
-
-    my_run = client.beta.threads.runs.create_and_poll(
+    
+    run0 = client.beta.threads.runs.create_and_poll(
         thread_id=thread.id,
-        assistant_id=completion.id
+        assistant_id=assistant.id
     )
+
+    messages = list(client.beta.threads.messages.list(thread_id=thread.id, run_id=run0.id))
     
+    # delete files, thread, assistant
     
-    messages = list(client.beta.threads.messages.list(thread_id=thread.id, run_id=my_run.id))
-    message_content = messages[0].content[0].text
-    print(messages[0].content[0])
-    my_id = str(re.findall("'(.*?)'", str(messages[0].content[0]))[0])
+    client.beta.threads.delete(thread.id) 
+    client.beta.assistants.delete(assistant.id)   
+    
+    client.files.delete(transcript.id)
+    client.files.delete(resume.id)
 
-    # Delete thread and files
-    client.beta.threads.delete(thread.id)    
-    client.files.delete(file.id)
-    json = client.files.content(my_id)
+    return messages[0].content[0].text.value
 
-    my_file = client.files.content(my_id)
-    my_file.stream_to_file("myfilename.txt")
-    client.files.delete(my_id)
+pdf_to_text('backend/Arnav_Khinvasara_resume.pdf')
+print(obtain_rating('transcript.txt', 'resume.txt'))
 
-    return 0
-'''
