@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import InterviewSelection from './components/InterviewSelection';
 import Onboarding from './components/Onboarding';
+import AudioRecorder from './components/AudioRecorder';
 function App() {
 
   const [onboardingVisible, setOnboardingVisible] = useState(true)
