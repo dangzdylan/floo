@@ -20,3 +20,5 @@ const TextSpeechFunction = async (text) => {
       }
     }
   };
+
+  export default TextSpeechFunction;

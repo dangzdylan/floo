@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './InterviewSelection.css'; // Make sure this path is correct
 import axios from 'axios';
+import TextSpeechFunction from './TextSpeechFunction';
 
 function InterviewSelection(props) {
     const [interviewLength, setInterviewLength] = useState('');
+    const textForSpeech = "So, tell me about yourself!"
 
     const handleSelect = (length) => {
         setInterviewLength(length);
@@ -42,7 +44,7 @@ function InterviewSelection(props) {
                 </div>
                 <button 
                     className="continue-button" 
-                    onClick={handleContinue} 
+                    onClick={() => {handleContinue(); TextSpeechFunction(textForSpeech);}}
                     disabled={!interviewLength} // Disable if no option is selected
                 >
                     Continue
