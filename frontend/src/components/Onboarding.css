@@ -38,13 +38,12 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 50vh;
+  height: 90%;
   background-color: #080808; /* Dark background */
   font-family: 'Arial', sans-serif;
   border-radius: 15px; /* Optional: rounds the edges */
   padding: 20px; /* Adds space inside the container */
   margin: 10px; /* Optional: Adds space outside the container */
-  margin-top: 150px;
 }
  
   /* Welcome text styling */
