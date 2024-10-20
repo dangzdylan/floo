@@ -7,6 +7,7 @@ from resume1 import pdf_to_text
 from dotenv import load_dotenv
 from flask_cors import CORS
 from deepgram_test import run_deepgram
+from text_to_speech import text_to_speech
 
 # Load the OpenAI API key from environment variables
 load_dotenv()
@@ -118,6 +119,21 @@ def upload_audio():
     run_deepgram('uploaded_audio.wav')
 
     return "File uploaded successfully", 200
+
+@app.route('/text_to_speech', methods=['POST'])
+def handle_text_to_speech() :
+    data = request.json
+    text = data.get('text', '')
+    
+    # Generate the speech file
+    audio_file = text_to_speech(text)
+    
+    if audio_file:
+        return send_file(audio_file, mimetype="audio/wav")
+    else:
+        return jsonify({"error": "Failed to generate audio"}), 500
+
+
 
 if __name__ == "__main__":
     app.run()
