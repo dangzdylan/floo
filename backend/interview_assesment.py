@@ -1,10 +1,10 @@
 from openai import OpenAI
 from flask import Flask
 from flaskbase import *
-
+import json
 import re
 load_dotenv(dotenv_path='/backend')
-openai_api_key = os.getenv("OPENAI_API_KEY")
+openai_api_key = os.getenv(OPENAI_API_KEY)
 
 
 def transcript_saver(transcript):
@@ -14,7 +14,7 @@ def transcript_saver(transcript):
         f.write(message["role"] + ": " + message["content"])
     f.close()
 
-def assesment_start(transcript_path, resume_path):
+def assessment_start(transcript_path, resume_path):
     # Takes in path to transcript txt file and resume txt file
     # Returns feedback text
     client = OpenAI(api_key=openai_api_key)
@@ -78,7 +78,7 @@ def assesment_start(transcript_path, resume_path):
             "content": """
                 You are given both an interview transcript and a resume.
                 Tell the user feedback on the user responses. How could they improve?
-                Use specific examples.
+                Use specific examples. Be concise and do not write much.
             
             """,
             "attachments": [
@@ -98,6 +98,38 @@ def assesment_start(transcript_path, resume_path):
 
     messages = list(client.beta.threads.messages.list(thread_id=thread.id, run_id=run0.id))
     
+    message2 = client.beta.threads.messages.create(
+        thread.id,
+        role="user",
+        content="""
+                For every answer given by the user in the interview, output an improved answer.
+                Do not output anything else. Be very concise and do not write a lot for every answer.
+                """,
+    )
+
+    run1 = client.beta.threads.runs.create_and_poll(
+        thread_id=thread.id,
+        assistant_id=assistant.id
+    )
+
+    messages2 = list(client.beta.threads.messages.list(thread_id=thread.id, run_id=run1.id))
+
+
+    message3 = client.beta.threads.messages.create(
+        thread.id,
+        role="user",
+        content="""
+                Output a single number, nothing else, representing the rating of the user's interview performance.
+                """,
+    )
+
+    run2 = client.beta.threads.runs.create_and_poll(
+        thread_id=thread.id,
+        assistant_id=assistant.id
+    )
+
+    messages3 = list(client.beta.threads.messages.list(thread_id=thread.id, run_id=run2.id))
+
     # delete files, thread, assistant
     
     client.beta.threads.delete(thread.id) 
@@ -106,7 +138,24 @@ def assesment_start(transcript_path, resume_path):
     client.files.delete(transcript.id)
     client.files.delete(resume.id)
 
-    return messages[0].content[0].text.value
+
+    with open(transcript_path, "r") as text_file:
+        transcript_string = text_file.read()
+    
+    y = {"interview": transcript_string,
+        "better_answers": messages2[0].content[0].text.value,
+        "feedback": messages[0].content[0].text.value,
+        "score": messages3[0].content[0].text.value
+        }
+
+    with open("backend/data.json",'r+') as file:
+        file_data = json.load(file)
+        file_data["previous_interviews"].append(y)
+        file.seek(0)
+        json.dump(file_data, file, indent = 4)
+
+    return y
+
 
 def obtain_rating(transcript_path, resume_path):
     # Takes in path to transcript txt file and resume txt file
@@ -187,4 +236,4 @@ def obtain_rating(transcript_path, resume_path):
 
     return messages[0].content[0].text.value
 
-print(assesment_start("backend/speech_text_message.json", "backend/resume.txt"))
+
