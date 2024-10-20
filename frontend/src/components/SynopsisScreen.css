@@ -1,3 +1,23 @@
 .demo{
-    background-color: white;
+    background-color: #080808;
+    color: #F2F2F2;
+    padding:1em;
+    border-radius:3em;
+    cursor: pointer; /* Change cursor to pointer (link-like cursor) */
+    transform: scale(2);
+}
+
+.demo:hover {
+    transform: scale(2.5);
+    box-shadow: 0 4px 15px green;
+}
+.demo1 {
+
+}
+
+.alvin {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    height: 90vh;
 }

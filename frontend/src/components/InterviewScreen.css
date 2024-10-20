@@ -32,7 +32,7 @@ html, body {
     align-items:center;
     background-color: #080808;
     color: #F2F2F2;
-    font-size: 4pc;
+    font-size: 3pc;
     margin-top: 20px;
     width:80%;
 }
@@ -53,7 +53,7 @@ html, body {
     align-items: center;        /* Align children at the bottom of the div */
     width:100%;
     margin-top: 20px;
-    height: 95vh;                /* Set height to 95% of the viewport */
+    height: 70vh;                /* Set height to 95% of the viewport */
   }
 
 
@@ -66,10 +66,11 @@ html, body {
     border-width: 0.5px;
     border-style: solid;
     border-radius: 10em;
+    transform: scale(0.7);
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scaling and shadow */
 }
 
 .budda:hover {
     cursor: pointer; /* Change cursor to pointer (link-like cursor) */
-    transform: scale(1.03); /* Scale up the element */
+    transform: scale(0.75); /* Scale up the element */
 }

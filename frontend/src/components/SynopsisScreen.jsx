@@ -22,13 +22,14 @@ const SynopsisScreen = (props) => {
         })
     }, [detailsVisible])
 
-    return (<div class="demo">
-        {buttonsVisible && <button class="demo" onClick={() => showDetails()}>View Past Interview Feedback and Analysis</button>} 
-        {buttonsVisible && <button class="demo" onClick={() => props.afterSynopsis()}>Practice another interview!</button>}
-        {detailsVisible && <div>
-            ok
+    return (<div class="alvin">
+        <div className="demo1">
+            {buttonsVisible && <button class="demo" onClick={() => showDetails()}>Reveal Feedback and Analysis</button>} 
+            {detailsVisible && <div>
+                ok
+            </div>
+            }
         </div>
-        }
     </div>);
 
 }
