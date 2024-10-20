@@ -17,29 +17,28 @@ client = OpenAI(api_key=openai_api_key)
 
 app = Flask(__name__)
 CORS(app)
-
+"""
 interview = []
-
+questions = []
 length = []
 first_question = False
-
 @app.route("/interview/setup", methods=["POST"])
 def interview_setup():
     length.append(request.json.get("length"))
     interview.append(
         {
-            "role": "system", "content": """
+            "role": "system", "content": ""
             You are acting as an interviewer that asks behavioral questions. 
             The user is applying for a software engineering role.
             Your job is to ask general behavioral questions that a typical interview would target.
             After each question, you will ask a follow up question about any details important to the job field. This encourages the user to elaborate on his answers and be more through.
             Make sure to be enthuisatic and show that you are an attentive listener!
             The first question you ask will always be "Tell me about yourself".
-            """
+            ""
         }
     )
 
-@app.route("/interview")
+@app.route("/interview", methods=["POST", "GET"])
 def interview_question():
 
     length[0] -= 1
@@ -52,6 +51,7 @@ def interview_question():
 
     interview.append({"role": "system", "content": "Give a kind short response if the user has answered a question. Then ask another one."})
 
+    interview.append("role": "user", "content": "Next question")
     completion = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[interview]
@@ -59,6 +59,7 @@ def interview_question():
 
     # Access the content of the message
     message = completion.choices[0].message.content
+    questions.append(message)
     return jsonify({"response": message})
 
 @app.route("/interview/followup")
@@ -77,6 +78,7 @@ def followup_question():
     )
 
     message = completion.choices[0].message.content
+    questions.append(message)
     if (length[0] > 0):
         return jsonify({"response": message, "continue": True})
     else:
@@ -90,7 +92,7 @@ def interview_save():
         {"role": "user", "content": answer}
     )
     return jsonify({"reponse": "Thank you"})
-
+"""
 @app.route("/resumeParser", methods=["POST"])
 def resumeParser():
     if 'file' not in request.files:
@@ -116,7 +118,6 @@ def upload_audio():
     run_deepgram('uploaded_audio.wav')
 
     return "File uploaded successfully", 200
-
 
 if __name__ == "__main__":
     app.run()

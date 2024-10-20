@@ -10,6 +10,7 @@ function App() {
   const [interviewSelectionVisible, setInterviewSelectionVisible] = useState(false)
   const [interviewScreenVisible, setInterviewScreenVisible] = useState(false)
   const [interviewLength, setInterviewLength] = useState(0);
+  const [synopsisScreenVisible, setSynopsisScreenVisible] = useState(false)
 
   const afterOnBoardHandler = () => {
     setOnboardingVisible(false)
@@ -22,11 +23,17 @@ function App() {
     setInterviewScreenVisible(true)
   }
 
+  const afterInterviewHandler = () => {
+    setInterviewScreenVisible(false)
+    setSynopsisScreenVisible(true)
+  }
+
   return (
     <div className="App">
       {onboardingVisible && (<Onboarding afterOnboarding={() => afterOnBoardHandler()}/>)}
       {interviewSelectionVisible && (<InterviewSelection afterSelection={(length) => afterSelectionHandler(length)}/>)}
-      {interviewScreenVisible && (<InterviewScreen length={interviewLength}/>)}
+      {interviewScreenVisible && (<InterviewScreen length={interviewLength} afterInterview={afterInterviewHandler}/>)}
+      {/*synopsisScreenVisible && (<SynopsisScreen/>)*/}
     </div>
   );
 }
