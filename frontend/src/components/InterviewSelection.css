@@ -11,7 +11,6 @@ html, body {
     font-size: 75px; /* Increased font size for emphasis */
     font-weight: bold; /* Bold text for emphasis */
     margin-bottom: 20px; /* Space below the question */
-    text-shadow: -0.5px 5px 5px #87ddff;
 }
 
 header {

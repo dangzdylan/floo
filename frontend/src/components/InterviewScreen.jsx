@@ -84,16 +84,38 @@ const InterviewScreen = (props) => {
             setTime(60)
         }
     }
+    // Calculate width as a percentage
+    const widthPercentage = (time / 60) * 90; // Calculate width based on time
+    // Calculate the color based on time (from blue to red)
+    const color = `rgb(${255 - (time / 60) * 255}, ${(time / 60) * 255}, 0)`;
 
-
-    return (<div>
+    return (
+    <div className="mommy">
         <div class="demo2">{question}</div>
         {/*<AudioRecorder/>*/}
-        <button onClick={() => buttonClickHandler()}>
-            {time===60 ? "Start" : "Stop"} Recording
-        </button>
-        <div class="demo">Timer: {time}</div>
-    </div>);
+        <div className="daddy">
+            <div className="lightbar"
+            style={{
+                width: `${widthPercentage}%`,
+                height: '20px', // Adjust height as needed
+                backgroundColor: color, // Color changes from blue to red
+                margin: 'auto', // Center the bar
+            }}
+            ></div>
+            <div className="budda" onClick={() => buttonClickHandler()} 
+            style={{
+                boxShadow: time === 60 ? '0 4px 20px rgba(239, 236, 236, 0.789)' /* Optional: Add a shadow for more effect */ : '0 4px 10px red',
+            }}
+            >
+                <img
+                    src="mic.png" // Replace with your image URL or path
+                    alt="mic with mic"
+                    className="bubba"
+                />
+            </div>
+        </div>
+    </div>
+    );
 
 }
 
