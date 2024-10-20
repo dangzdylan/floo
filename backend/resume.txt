@@ -1,0 +1,44 @@
+Arnav Khinvasara
+(408)-750-0016 |arnavkhinvasara@berkeley.edu |linkedin.com/in/arnav-khinvasara |github.com/arnavkhinvasara
+Education
+University of California, Berkeley Cumulative GPA: 4.0/4.0
+BS in Electrical Engineering and Computer Sciences, Minor in Math Expected Graduation: May 2027
+Relevant Courses : Structure and Interpretation of Computer Programs, Designing Information Devices and
+Systems, Data Structures and Algorithms
+Relevant Professional Experience
+Software Engineering Intern Aug 2022 – Feb 2024
+Vocus Labs Cupertino, CA
+•Used Python’s Matplotlib, Pandas, and Numpy libraries to analyze over 200,000 milliseconds of brain signals in
+5+channels from about 50service members
+•Researched FFT and applied the algorithm to determine active frequencies in the brain signals in order to evaluate
+service member mental states and promote their safety
+•Used React JS to create a web-app for 2clients to design computer chips, which is used by 3teams
+Summer Software Engineering Intern Jun 2022 – Aug 2022
+Cognixion Palo Alto, CA
+•Researched NLP techniques such as hidden Markov models and RNNs to enable efficient auto-fill functionality for
+25+ disabled individuals
+•Utilized Flask to develop a web-app to display the functionality and its stats for the 25+ users (in addition to 2+
+teams)
+•Converted the website into an AR tool using AR.js for 40+ users to drastically improve real-time, context-sensitive
+input assistance
+Projects
+College Screen Time Betting |React Native, Swift, Git, REST APIs, Firebase Oct 2024 – Present∗Developing 2versions of a mobile app, one using React Native and one using Swift. Incorporating Firebase for
+data storage and REST APIs for information collection
+∗Creating the mobile app for college students to bet on each other’s screen time in order to make money while
+being more productive
+∗Access to potential user base of 45,000 students (just from Berkeley)
+HS Course Matcher |PHP, MySQL, Apache, Full-stack, HTML/CSS, Git Feb 2022 – Mar 2022∗Developed a full-stack web application using PHP and MySQL in the backend and HTML/CSS in the frontend
+∗Created the site for students at my school to compare class schedules with their friends, see people in their classes,
+and make new friends
+∗Obtained 100+ users and expanded to 5high schools
+Job/Internship Finder |PHP, MySQL, Apache, Full-stack, HTML/CSS, Git Oct 2020 – Nov 2020∗Developed a full-stack web application using PHP and MySQL in the backend (Apache server) and HTML/CSS
+in the frontend
+∗Created the site for high schoolers to find jobs and internship opportunities near them based on their interests
+and skills
+∗Obtained 50+ users across 5+schools
+Technical Skills
+Languages : Python, Javascript, PHP, Java, SQL, HTML/CSS
+Frameworks : React.js, React Native, Node.js, Flask, MySQL, OpenCV, TensorFlow, PyTorch
+Developer Tools : Git, Postman, Visual Studio, Sublime Text, Android Studio, Eclipse, NoSQL, npm, pip, AWS,
+Azure
+Other/General : data engineer, Ruby, product analytics
