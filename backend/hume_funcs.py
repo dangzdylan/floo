@@ -14,7 +14,7 @@ def top_emotions(file):
     client = AsyncHumeClient(api_key=HUME_API_KEY)
 
     local_filepaths = [
-        open("uploaded_audio.wav", mode="rb")
+        open("backend/uploaded_audio.wav", mode="rb")
     ]
 
     # Create configurations for each model you would like to use (blank = default)
@@ -25,7 +25,7 @@ def top_emotions(file):
     # Create a stringified object containing the configuration
     stringified_configs = InferenceBaseRequest(models=models_chosen)
     # Start an inference job and print the job_id
-    job_id = await client.expression_measurement.batch.start_inference_job_from_local_file(
+    job_id = client.expression_measurement.batch.start_inference_job_from_local_file(
         json=stringified_configs, file=local_filepaths
     )
     print(job_id)

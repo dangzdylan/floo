@@ -1,7 +1,75 @@
-.demo{
+html, body {
+    height: 100%;         /* Ensure the body takes the full height */
+    margin: 0;           /* Remove default margin */
+    overflow: hidden;     /* Prevent scrolling */
+  
+}
+
+/* .twin {
     background-color: white;
+    width: 10vh;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;     
+    justify-content: flex-end;     
+    align-items: center;         
+} */
+
+/* .twinsies{
+    background-color: #080808;
+    width:7vh;
+} */
+
+.lightbar {
+    width:90%;
+    border-radius:5em;
+    transition: width 1s ease; /* Smooth transition */
 }
 
 .demo2{
-    background-color: white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color: #080808;
+    color: #F2F2F2;
+    font-size: 4pc;
+    margin-top: 20px;
+    width:80%;
+}
+
+.mommy {
+    height: 100vh;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    background-color: #080808;
+    
+}
+
+.daddy {
+    display: flex;               /* Enable Flexbox */
+    flex-direction: column;          /* Arrange children left to right */
+    align-items: center;        /* Align children at the bottom of the div */
+    width:100%;
+    margin-top: 20px;
+    height: 95vh;                /* Set height to 95% of the viewport */
+  }
+
+
+.bubba {
+    padding:2em;
+}
+
+.budda {
+    border-color: #F2F2F2;
+    border-width: 0.5px;
+    border-style: solid;
+    border-radius: 10em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scaling and shadow */
+}
+
+.budda:hover {
+    cursor: pointer; /* Change cursor to pointer (link-like cursor) */
+    transform: scale(1.03); /* Scale up the element */
 }

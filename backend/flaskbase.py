@@ -134,6 +134,28 @@ def handle_text_to_speech() :
         return jsonify({"error": "Failed to generate audio"}), 500
 
 
+behavioralQuestions = [
+    "Tell me about a time when you faced a difficult technical problem. How did you approach it?",
+    "Describe a situation where you had to work with a challenging team member. How did you handle it?",
+    "Give an example of a project where you had to quickly learn a new technology or framework.",
+    "Tell me about a time when you received critical feedback. How did you respond and improve?",
+    "Describe a situation where you had to balance competing priorities or deadlines. How did you manage it?",
+    "Can you share an example of a time you took ownership of a task or project?",
+    "Tell me about a time when you had to collaborate with a non-technical team member. How did you ensure effective communication?",
+    "Describe a situation where you had to make a decision with incomplete information. How did you handle it?",
+    "Tell me about a project where things didn’t go as planned. What did you do to address the issues?",
+    "Describe a time when you had to work under pressure. How did you maintain productivity?",
+    "Tell me about a time when you had to debug a complex issue. How did you approach the problem?",
+    "Can you share an example of a time when you helped a team member resolve a technical issue?",
+    "Tell me about a time you went above and beyond in a project. What motivated you?",
+    "Describe a situation where you had to adapt to significant changes in a project. How did you adjust?",
+    "Tell me about a time when you contributed to improving a process or workflow. What was the outcome?"
+]
+
+@app.route('/perform_interview', method=['GET'])
+def perform_interview(n):
+    assessment_start('backend/transcript.txt', 'backend/resume.txt')
+    return send_file('backend/data.json')
 
 if __name__ == "__main__":
     app.run()
