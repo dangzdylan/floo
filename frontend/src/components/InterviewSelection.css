@@ -1,0 +1,90 @@
+/* Base styles */
+body {
+    background-color: #1a0f2e; /* Dark background */
+    font-family: 'Arial', sans-serif; /* Clean font for readability */
+    margin: 0; /* Remove default margin */
+    height: 100vh; /* Full height for body */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+/* Title Styles */
+.questionText {
+    color: #d8a2ff; /* Light purple text for contrast */
+    font-size: 24px; /* Increased font size for emphasis */
+    font-weight: bold; /* Bold text for emphasis */
+    margin-bottom: 20px; /* Space below the question */
+}
+
+/* Interview Selection Container */
+.interview-selection {
+    text-align: center; /* Center align text */
+    padding: 40px; /* Padding around the container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    background: #2e1a47; /* Dark purple background for the container */
+    max-width: 500px; /* Max width to keep it compact */
+    width: 100%; /* Full width */
+    color: #ffffff; /* White text for better visibility */
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 15px; /* Space between buttons */
+    margin: 20px 0; /* Margin above and below the button container */
+}
+
+/* Button Styles */
+.length-button {
+    padding: 12px 24px; /* Increased padding */
+    border: none;
+    border-radius: 5px;
+    background-color: #5b3e78; /* Darker purple for buttons */
+    cursor: pointer;
+    font-size: 16px; /* Consistent font size */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Shadow for buttons */
+}
+
+/* Selected Button Style */
+.length-button.selected {
+    background-color: #7a5a9a; /* Lighter purple when selected */
+    color: white; /* White text */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Stronger shadow for selected button */
+}
+
+/* Hover Effect for Buttons */
+.length-button:hover {
+    background-color: #67528e; /* Lighter purple on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Continue Button Styles */
+.continue-button {
+    padding: 12px 24px; /* Increased padding */
+    border: none;
+    border-radius: 5px;
+    background-color: #4b8c3e; /* Green color for continue button */
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Shadow for continue button */
+}
+
+/* Hover Effect for Continue Button */
+.continue-button:hover {
+    background-color: #3f7e36; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Disabled State for Continue Button */
+.continue-button:disabled {
+    background-color: #ccc; /* Gray color when disabled */
+    cursor: not-allowed; /* Change cursor style when disabled */
+    box-shadow: none; /* Remove shadow when disabled */
+}
