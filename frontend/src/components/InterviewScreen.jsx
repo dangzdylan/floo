@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import './InterviewScreen.css';
 import AudioRecorder from './AudioRecorder';
 import axios from 'axios';
@@ -127,6 +127,5 @@ const InterviewScreen = (props) => {
     );
 
 }
-
 
 export default InterviewScreen;
