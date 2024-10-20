@@ -9,7 +9,7 @@ from hume.expression_measurement.batch.types import UnionPredictResult
 
 load_dotenv()
 HUME_API_KEY = os.getenv("HUME_API_KEY")
-
+'''
 def top_emotions(file):
     client = AsyncHumeClient(api_key=HUME_API_KEY)
 
@@ -17,3 +17,4 @@ def top_emotions(file):
         files=[file],
         notify=True,
     )
+'''

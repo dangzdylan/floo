@@ -10,7 +10,6 @@ DEEPGRAM_API_KEY = os.getenv('DEEPGRAM_API_KEY')
 
 def run_deepgram(PATH_TO_FILE):
     deepgram = DeepgramClient(DEEPGRAM_API_KEY)
-
     try:
         with open(PATH_TO_FILE, 'rb') as buffer_data:
             payload = { 'buffer': buffer_data }
