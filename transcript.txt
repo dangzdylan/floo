@@ -1,4 +1,0 @@
-Interviewer: Hello. Nice to meet you.
-User: Hello!
-Interviewer: Can you tell me a little bit about yourself?
-User: I am a silly student! Doing silly things!

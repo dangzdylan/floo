@@ -6,6 +6,7 @@ import re
 load_dotenv(dotenv_path='/backend')
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
+
 def transcript_saver(transcript):
     f = open("transcript.txt", "a")
 
@@ -61,14 +62,28 @@ def assesment_start(transcript_path, resume_path):
             {
             "role": "user",
             "content": """
-                You are given an interview transcript.
-                Output feedback on the user responses. How could they improve?
-                Use specific examples.
+                I have attatched a transcript file. Now I will attatch a resume
+                file.
             
             """,
             "attachments": [
                 {
                 "file_id": transcript.id,
+                "tools": [{"type": "code_interpreter"}, {"type": "file_search"}]
+                }
+            ]
+            },
+            {
+                "role": "user",
+            "content": """
+                You are given both an interview transcript and a resume.
+                Tell the user feedback on the user responses. How could they improve?
+                Use specific examples.
+            
+            """,
+            "attachments": [
+                {
+                "file_id": resume.id,
                 "tools": [{"type": "code_interpreter"}, {"type": "file_search"}]
                 }
             ]
@@ -172,6 +187,4 @@ def obtain_rating(transcript_path, resume_path):
 
     return messages[0].content[0].text.value
 
-pdf_to_text('backend/Arnav_Khinvasara_resume.pdf')
-print(obtain_rating('transcript.txt', 'resume.txt'))
-
+print(assesment_start("backend/speech_text_message.json", "backend/resume.txt"))
