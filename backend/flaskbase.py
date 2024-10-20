@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, request, jsonify
 from openai import OpenAI
 
 # Load the OpenAI API key from environment variables
@@ -8,13 +8,13 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 # Initialize the OpenAI client with the API key
 client = OpenAI(api_key=openai_api_key)
 
-
 app = Flask(__name__)
 
 interview = []
 
 job_type = []
 length = []
+first_question = False
 
 @app.route("/interview/setup")
 def interview_setup():
@@ -35,10 +35,16 @@ def interview_setup():
 
 @app.route("/interview")
 def interview_question():
-    
-    answer = request.json.get("message") # Extract the user's answer
 
-    interview.append({"role": "user", "content": answer})
+    length[0] -= 1
+
+    if (first_question):
+        answer = request.json.get("message") # Extract the user's answer
+        interview.append({"role": "user", "content": answer})
+
+    first_question = True
+
+    interview.append({"role": "system", "content": "Give a kind short response if the user has answered a question. Then ask another one."})
 
     completion = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -47,13 +53,37 @@ def interview_question():
 
     # Access the content of the message
     message = completion.choices[0].message.content
-    return f"<p>{message}</p>"
+    return jsonify({"response": message})
 
 @app.route("/interview/followup")
 def followup_question():
-    pass
+    
+    answer = request.json.get("message") # Extract the user's answer
 
+    interview.append(
+        {"role": "user", "content": answer},
+        {"role": "system", "content": "You will recieve an answer to the question. Respond with a follow up question that encourages the user to elaborate on vague details."}
+    )
 
+    completion = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[interview]
+    )
+
+    message = completion.choices[0].message.content
+    if (length[0] > 0):
+        return jsonify({"response": message, "continue": True})
+    else:
+        return jsonify({"response": message, "continue": False})
+
+@app.route("/interview/save")
+def interview_save():
+    answer = request.json.get("message") # Extract the user's answer
+
+    interview.append(
+        {"role": "user", "content": answer}
+    )
+    return jsonify({"reponse": "Thank you"})
 
 if __name__ == "__main__":
     app.run()
