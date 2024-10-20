@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import InterviewSelection from './components/InterviewSelection';
 import Onboarding from './components/Onboarding';
 import InterviewScreen from './components/InterviewScreen';
+import SynopsisScreen from './components/SynopsisScreen';
 //import AudioRecorder from './components/AudioRecorder';
 function App() {
 
@@ -28,12 +29,17 @@ function App() {
     setSynopsisScreenVisible(true)
   }
 
+  const afterSynopsisHandler = () => {
+    setSynopsisScreenVisible(false)
+    setOnboardingVisible(true)
+  }
+
   return (
     <div className="App">
       {onboardingVisible && (<Onboarding afterOnboarding={() => afterOnBoardHandler()}/>)}
       {interviewSelectionVisible && (<InterviewSelection afterSelection={(length) => afterSelectionHandler(length)}/>)}
       {interviewScreenVisible && (<InterviewScreen length={interviewLength} afterInterview={afterInterviewHandler}/>)}
-      {/*synopsisScreenVisible && (<SynopsisScreen/>)*/}
+      {synopsisScreenVisible && (<SynopsisScreen afterSynopsis={afterSynopsisHandler}/>)}
     </div>
   );
 }
