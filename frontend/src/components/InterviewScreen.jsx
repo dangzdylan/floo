@@ -1,9 +1,12 @@
 import React from 'react';
 import './InterviewScreen.css';
+import AudioRecorder from './AudioRecorder';
 
 function InterviewScreen () {
 
-    return (<div>yayayayayayayaya</div>);
+    return (<div>
+        <AudioRecorder/>
+    </div>);
 
 
 
