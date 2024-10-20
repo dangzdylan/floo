@@ -2,13 +2,11 @@ import React from 'react';
 import './InterviewScreen.css';
 import AudioRecorder from './AudioRecorder';
 
-function InterviewScreen () {
+const InterviewScreen = (props) => {
 
     return (<div>
         <AudioRecorder/>
     </div>);
-
-
 
 }
 
