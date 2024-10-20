@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Onboarding.css";
-import { upload } from "@testing-library/user-event/dist/upload";
 
 const Onboarding = () => {
  

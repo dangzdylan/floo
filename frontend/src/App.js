@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import InterviewSelection from './components/InterviewSelection';
 import Onboarding from './components/Onboarding';
