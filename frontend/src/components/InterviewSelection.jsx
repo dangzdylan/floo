@@ -14,19 +14,6 @@ function InterviewSelection(props) {
         if (interviewLength === "demo"){
             thisLength = 2
         }
-        const jsonPayload = {
-            "length": thisLength, // Sending the 'length' value as JSON
-        };
-        try {
-            const response = await axios.post('http://localhost:5000/resumeParser', jsonPayload, {
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            });
-            console.log('JSON sent successfully:', response.data);
-        } catch (error) {
-            console.error('Error sending JSON:', error);
-        }
         props.afterSelection(thisLength)
     };
 
