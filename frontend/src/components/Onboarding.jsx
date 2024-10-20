@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Onboarding.css";
 import axios from "axios";
 
-const Onboarding = () => {
+const Onboarding = (props) => {
  
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -26,6 +26,7 @@ const Onboarding = () => {
     } catch (error) {
       console.error('Error uploading file:', error);
     }
+    props.afterOnboarding()
   }
 
   return (

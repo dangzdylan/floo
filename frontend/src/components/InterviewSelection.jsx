@@ -17,16 +17,16 @@ function InterviewSelection() {
             <div className="questionText">What type of Interview?</div>
             <div className="button-container">
                 <button 
-                    className={`length-button ${interviewLength === 'quick' ? 'selected' : ''}`}
-                    onClick={() => handleSelect('quick')}
+                    className={`length-button ${interviewLength === 'demo' ? 'selected' : ''}`}
+                    onClick={() => handleSelect('demo')}
                 >
-                    Quick (5-10 min)
+                    Demo (2-3 min)
                 </button>
                 <button 
-                    className={`length-button ${interviewLength === 'longer' ? 'selected' : ''}`}
-                    onClick={() => handleSelect('longer')}
+                    className={`length-button ${interviewLength === 'normal' ? 'selected' : ''}`}
+                    onClick={() => handleSelect('normal')}
                 >
-                    Longer (15-20 min)
+                    Normal (10-15 min)
                 </button>
             </div>
             <button 
