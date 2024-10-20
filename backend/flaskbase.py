@@ -1,8 +1,13 @@
 import os
-from flask import Flask
+from flask import Flask, request, send_file
+from werkzeug.utils import secure_filename
+import PyPDF2
 from openai import OpenAI
+from resume1 import pdf_to_text
+from dotenv import load_dotenv
 
 # Load the OpenAI API key from environment variables
+load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 # Initialize the OpenAI client with the API key
@@ -53,6 +58,23 @@ def interview_question():
 def followup_question():
     pass
 
+@app.route("/resumeParser", methods=["POST"])
+def resumeParser():
+    if 'file' not in request.files:
+        return "No file part", 400
+    
+    file = request.files['file']
+    
+    if file.filename == '':
+        return "No selected file", 400
+    
+    # Secure the filename
+    filename = secure_filename(file.filename)
+    
+    # Save the file temporarily
+    filepath = f'./{filename}'
+
+    pdf_to_text(filepath)
 
 
 if __name__ == "__main__":
